@@ -18,7 +18,7 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>2020BJDasa - Clock-X</title>
+  <title>LFSR - Clock-X</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="2020BJDasa">
+            <span class="h2" id="subtitle" title="LFSR">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-03-19 00:00" pubdate>
-        March 19, 2021 am
+      <time datetime="2021-03-31 20:09" pubdate>
+        March 31, 2021 pm
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      220 字
+      728 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      8
        分钟
     </span>
   
@@ -225,18 +225,35 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">2020BJDasa</h1>
+            <h1 style="display: none">LFSR</h1>
             
             <div class="markdown-body">
-              <h1 id="2020BJDasa"><a href="#2020BJDasa" class="headerlink" title="2020BJDasa"></a>2020BJDasa</h1><p>可以发现两个n公用了一个p,那么求取两个n的最大公因数就可以得到p,这样一来两个n就都可以被分解了。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> long_to_bytes<br>n1=<span class="hljs-number">0x661d752110bcc6ee5ca33edaf244716cccce6400dfdbfd84ce6ae2d8fbbeb2f61584da7668768403b6135e7810eae9d4d8e044935f8680de5324c3fc0f9bffb01812f9d2ac9055ee8dbd17b90c5a60cb7595a82f24a075d951db3b7f913b8543ecd52b8c8464ce348c3970d511ae911e814f9ca33b8412db2730e61820f5de47</span><br>p=<span class="hljs-number">9540203717217880059997385799331301649727503984010337568404427747385824530958536656147747848448822264268428226235860927158082497191830274046098671199542207</span><br>c1=<span class="hljs-number">0xd7931796fa39cfa37c0b621c01175904206dff1d74a28369dcd6517957ed76c5eb7d4934cbeb902119f9215f9ae7926debe3abe856244b45dbb4caaa2b93dbb79a3ca1a9813e1466c49fe3c03e5462811afbf3f40ff79927f9fe3681b7f3cef34466b9a736512f4931b5026eefacbae9be6e408085a7a636c514574c3b22ffe</span><br>q=n1//p<br>phi=(p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>)<br>e=<span class="hljs-number">65537</span><br>d=gp.invert(e,phi)<br>m=<span class="hljs-built_in">pow</span>(c1,d,n1)<br>print(long_to_bytes(m))<br><span class="hljs-comment">#key=b&#x27;\x89)\xef\x12\xa1\x7f\x14[\xc9\xb4\x8a\xfa,\x88\xa2\xef&#x27;</span><br></code></pre></td></tr></table></figure>
-
-<p>同理：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> long_to_bytes<br>p=<span class="hljs-number">9540203717217880059997385799331301649727503984010337568404427747385824530958536656147747848448822264268428226235860927158082497191830274046098671199542207</span><br>n2=<span class="hljs-number">0x9f159326c907441326c88d17eae1c6e8aaea23922c5e628a585294e379e9245644f9c249c57f54a2b83921b4adc988fecc90c00feb6936d9be1f3a5ffae951b74ffbc6fc7aa11743e4ca179a937392dacf931e820d1d83016562ff608e8c59ef7310654a09bbba4a0129f71dcb61bd9bef073bbb93bfcac4a7a2e81156dbb32d</span><br>c2=<span class="hljs-number">0x6240740d41a539a88634726cf0a791a87e02419c3c3e00dff62eba59e81a93fd04a59109e57f64fc375b9a321583b6fa133317eb5c4e6eb1e6f6d9a0b4ae6ff0c54423718811f7956cd63b7bf9c7f8e29f48dad8f05b63b71d6c5112d91864adba0d6bb342c67aee39ccd5e2a6928a8e4ab2248d29a0c990bae821b31b39b1f3</span><br>q=n2//p<br>phi=(p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>)<br>e=<span class="hljs-number">65537</span><br>d=gp.invert(e,phi)<br>m=<span class="hljs-built_in">pow</span>(c2,d,n2)<br>print(long_to_bytes(m))<br><span class="hljs-comment">#iv=b&#x27;\xf5\xf6\xa8\x8b\x08U\xedG\xe0\xdew\x1c\xaf&lt;\xb2&gt;&#x27;</span><br></code></pre></td></tr></table></figure>
-
-<p>iv和key都已求出，进行最后一步。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> AES<br><span class="hljs-keyword">import</span> binascii<br>key=<span class="hljs-string">b&#x27;\x89)\xef\x12\xa1\x7f\x14[\xc9\xb4\x8a\xfa,\x88\xa2\xef&#x27;</span><br>iv=<span class="hljs-string">b&#x27;\xf5\xf6\xa8\x8b\x08U\xedG\xe0\xdew\x1c\xaf&lt;\xb2&gt;&#x27;</span><br>aa = AES.new(key, AES.MODE_CBC, iv)<br>data = <span class="hljs-string">&#x27;f8559d671b720cd336f2d8518ad6eac8c405585158dfde74ced376ba42d9fe984d519dc185030ddec7b4dc240fd90fa8&#x27;</span><br>data = binascii.a2b_hex(data)<br>data = aa.decrypt(data)<br>print(data)<br></code></pre></td></tr></table></figure>
-
+              <h1 id="lfsr-线性反馈位移器-小结"><a href="#lfsr-线性反馈位移器-小结" class="headerlink" title="lfsr(线性反馈位移器)小结"></a>lfsr(线性反馈位移器)小结</h1><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210330203704719.png" srcset="/img/loading.gif" lazyload alt="image-20210330203704719"></p>
+<p>如图，lfsr拥有m个触发器和m个可能的反馈位置，系数p<sub>i</sub>即反馈系数，s<sub>i</sub>与p<sub>i</sub>异或后（此处为一一对应异或），得到的一串新的序列，这一串序列再一一异或过去得到新的值也就是s<sub>m</sub>,同时s<sub>0</sub>会被输出，s<sub>m</sub>会接替s<sub>m-1</sub>的位置，整个序列相当于向前移了一个位置。</p>
+<p>（感觉这样说不是很清楚，还是上公式吧）</p>
+<p>s<sub>m</sub> ≡ s<sub>m-1</sub>p<sub>m-1</sub> + … + s<sub>1</sub>p<sub>1</sub> + s<sub>0</sub>p<sub>0</sub> mod 2(s<sub>m</sub> = s<sub>m-1</sub>p<sub>m-1</sub> ⊕ …  ⊕ s<sub>1</sub>p<sub>1</sub> ⊕ s<sub>0</sub>p<sub>0</sub>)</p>
+<p>第m个元素会由此计算得出，第m+1个元素也很容易就可以推导出来：</p>
+<p>s<sub>m+1</sub> ≡ s<sub>m</sub>p<sub>m-1</sub> + … + s<sub>2</sub>p<sub>1</sub> + s<sub>1</sub>p<sub>0</sub> mod 2</p>
+<p>m个触发器中的值会随着时间不断变化，但反馈系数不变，且新的值往往由之前的值决定。通过初始序列计算后来的序列自然是完全可以的，而通过后来的序列推算之前的序列也是可以的（如果知道反馈系数）</p>
+<p>但即便不知道反馈系数，在特定条件下也可以进行攻击。</p>
+<p>针对单个lfsr的已知明文攻击：</p>
+<p>假设有明文x<sub>0</sub>,x<sub>1</sub>,…,x<sub>2m-1</sub>,及其对应密文y<sub>0</sub>,y<sub>1</sub>,…,y<sub>2m-1</sub>。我们便可以构造出初试的2m个序列：</p>
+<p>s<sub>i</sub> ≡ x<sub>i</sub> + y<sub>i</sub> mod 2 ;  i=0,1,…,2m-1。</p>
+<p>当我们拥有了2m个序列时，便可以很轻松地推出密钥k(即p<sub>i</sub>),s<sub>m</sub>由前m-1序列与k分别异或后再逐个异或而来，s<sub>m+1</sub>同理，由此我们可以得到m个方程，未知数也是m个：</p>
+<p>i=0,    s<sub>m</sub> ≡ s<sub>m-1</sub>p<sub>m-1</sub> + … + s<sub>1</sub>p<sub>1</sub> + s<sub>0</sub>p<sub>0</sub>    mod 2</p>
+<p>i=1,    s<sub>m+1</sub> ≡ s<sub>m</sub>p<sub>m-1</sub> + … + s<sub>2</sub>p<sub>1</sub> + s<sub>1</sub>p<sub>0</sub>    mod 2</p>
+<p>…  ,                    ……                                        …</p>
+<p>i=m-1, s<sub>2m-1</sub> ≡ s<sub>2m-2</sub>p<sub>m-1</sub> + … + p<sub>1</sub>s<sub>m</sub> + p<sub>0</sub>s<sub>m-1</sub>    mod2</p>
+<p>就可以解出p<sub>i</sub> 了。</p>
+<p>这样看来lfsr是极易受到攻击的，所以我们往往组合使用。</p>
+<h2 id="Trivium"><a href="#Trivium" class="headerlink" title="Trivium"></a>Trivium</h2><p>将三个位移寄存器结合使用，并借助AND操作提高了安全性。</p>
+<p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210330213351934.png" srcset="/img/loading.gif" lazyload alt="image-20210330213351934"></p>
+<p>A位移反馈器长度为93，除去正常的位移器运行，69位会作为反馈为影响输入，66位则作为前馈位影响输出，同时91,92位进行AND操作与前馈位一起影响输出，而A的输出会作为B的输入的一部分，B的输出又会作为C的输入，而C的输出又将作为影响A的输入的一部分，而我们得到的密钥序列是A,B,C三个位移器的输出的异或值。</p>
+<p>使用Trivium进行加密：</p>
+<p>1.初始化阶段：将80位的iv加载至A,B最左边，C最右边3位为1，剩余都设置为0.</p>
+<p>2.热身阶段：计时 4*288 = 1152次，并不输出。</p>
+<p>3.加密阶段：至此开始产生的位构成密钥序列。</p>
+<p>（热身阶段是为了充分随机化密码，确保密钥序列同时取决于密钥k和iv）</p>
 
             </div>
             <hr>
@@ -246,7 +263,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/ctf-crypto/">ctf-crypto</a>
+                      <a class="hover-with-bg" href="/categories/knowledge-crypto/">knowledge-crypto</a>
                     
                   </div>
                 
@@ -254,7 +271,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Crypto-ctf-rsa-aes/">-Crypto -ctf -rsa -aes</a>
+                      <a class="hover-with-bg" href="/tags/Crypto-LFSR/">-Crypto -LFSR</a>
                     
                   </div>
                 
@@ -271,15 +288,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/03/19/ElGamal/">
+                      <a href="/2021/03/31/ECC/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ElGamal</span>
+                        <span class="hidden-mobile">ECC</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/03/19/hgame_aes_and_differ-hellman/">
+                        <span class="hidden-mobile">2021hgame_aes_and_DH</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

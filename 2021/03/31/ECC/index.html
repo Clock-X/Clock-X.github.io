@@ -18,7 +18,7 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>2020BJDasa - Clock-X</title>
+  <title>ECC - Clock-X</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="2020BJDasa">
+            <span class="h2" id="subtitle" title="ECC">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-03-19 00:00" pubdate>
-        March 19, 2021 am
+      <time datetime="2021-03-31 20:09" pubdate>
+        March 31, 2021 pm
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      220 字
+      552 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        分钟
     </span>
   
@@ -225,18 +225,38 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">2020BJDasa</h1>
+            <h1 style="display: none">ECC</h1>
             
             <div class="markdown-body">
-              <h1 id="2020BJDasa"><a href="#2020BJDasa" class="headerlink" title="2020BJDasa"></a>2020BJDasa</h1><p>可以发现两个n公用了一个p,那么求取两个n的最大公因数就可以得到p,这样一来两个n就都可以被分解了。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> long_to_bytes<br>n1=<span class="hljs-number">0x661d752110bcc6ee5ca33edaf244716cccce6400dfdbfd84ce6ae2d8fbbeb2f61584da7668768403b6135e7810eae9d4d8e044935f8680de5324c3fc0f9bffb01812f9d2ac9055ee8dbd17b90c5a60cb7595a82f24a075d951db3b7f913b8543ecd52b8c8464ce348c3970d511ae911e814f9ca33b8412db2730e61820f5de47</span><br>p=<span class="hljs-number">9540203717217880059997385799331301649727503984010337568404427747385824530958536656147747848448822264268428226235860927158082497191830274046098671199542207</span><br>c1=<span class="hljs-number">0xd7931796fa39cfa37c0b621c01175904206dff1d74a28369dcd6517957ed76c5eb7d4934cbeb902119f9215f9ae7926debe3abe856244b45dbb4caaa2b93dbb79a3ca1a9813e1466c49fe3c03e5462811afbf3f40ff79927f9fe3681b7f3cef34466b9a736512f4931b5026eefacbae9be6e408085a7a636c514574c3b22ffe</span><br>q=n1//p<br>phi=(p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>)<br>e=<span class="hljs-number">65537</span><br>d=gp.invert(e,phi)<br>m=<span class="hljs-built_in">pow</span>(c1,d,n1)<br>print(long_to_bytes(m))<br><span class="hljs-comment">#key=b&#x27;\x89)\xef\x12\xa1\x7f\x14[\xc9\xb4\x8a\xfa,\x88\xa2\xef&#x27;</span><br></code></pre></td></tr></table></figure>
-
-<p>同理：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> long_to_bytes<br>p=<span class="hljs-number">9540203717217880059997385799331301649727503984010337568404427747385824530958536656147747848448822264268428226235860927158082497191830274046098671199542207</span><br>n2=<span class="hljs-number">0x9f159326c907441326c88d17eae1c6e8aaea23922c5e628a585294e379e9245644f9c249c57f54a2b83921b4adc988fecc90c00feb6936d9be1f3a5ffae951b74ffbc6fc7aa11743e4ca179a937392dacf931e820d1d83016562ff608e8c59ef7310654a09bbba4a0129f71dcb61bd9bef073bbb93bfcac4a7a2e81156dbb32d</span><br>c2=<span class="hljs-number">0x6240740d41a539a88634726cf0a791a87e02419c3c3e00dff62eba59e81a93fd04a59109e57f64fc375b9a321583b6fa133317eb5c4e6eb1e6f6d9a0b4ae6ff0c54423718811f7956cd63b7bf9c7f8e29f48dad8f05b63b71d6c5112d91864adba0d6bb342c67aee39ccd5e2a6928a8e4ab2248d29a0c990bae821b31b39b1f3</span><br>q=n2//p<br>phi=(p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>)<br>e=<span class="hljs-number">65537</span><br>d=gp.invert(e,phi)<br>m=<span class="hljs-built_in">pow</span>(c2,d,n2)<br>print(long_to_bytes(m))<br><span class="hljs-comment">#iv=b&#x27;\xf5\xf6\xa8\x8b\x08U\xedG\xe0\xdew\x1c\xaf&lt;\xb2&gt;&#x27;</span><br></code></pre></td></tr></table></figure>
-
-<p>iv和key都已求出，进行最后一步。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> AES<br><span class="hljs-keyword">import</span> binascii<br>key=<span class="hljs-string">b&#x27;\x89)\xef\x12\xa1\x7f\x14[\xc9\xb4\x8a\xfa,\x88\xa2\xef&#x27;</span><br>iv=<span class="hljs-string">b&#x27;\xf5\xf6\xa8\x8b\x08U\xedG\xe0\xdew\x1c\xaf&lt;\xb2&gt;&#x27;</span><br>aa = AES.new(key, AES.MODE_CBC, iv)<br>data = <span class="hljs-string">&#x27;f8559d671b720cd336f2d8518ad6eac8c405585158dfde74ced376ba42d9fe984d519dc185030ddec7b4dc240fd90fa8&#x27;</span><br>data = binascii.a2b_hex(data)<br>data = aa.decrypt(data)<br>print(data)<br></code></pre></td></tr></table></figure>
-
+              <h1 id="ECC椭圆加密曲线"><a href="#ECC椭圆加密曲线" class="headerlink" title="ECC椭圆加密曲线"></a>ECC椭圆加密曲线</h1><h2 id="椭圆曲线的定义"><a href="#椭圆曲线的定义" class="headerlink" title="椭圆曲线的定义"></a>椭圆曲线的定义</h2><p>Z<sub>p</sub>(p&gt;3)上的椭圆曲线指满足以下条件的所有对(x,y) ∈ Z<sub>p</sub> 的集合：</p>
+<p>​                y<sup>2</sup> ≡ x<sup>3</sup> + a*x + b mod p</p>
+<p>以及一个无穷大的虚数点此处记为G，其中（a,b）∈ Z<sub>p</sub></p>
+<p>且满足条件4*a<sup>3</sup> + 27*b<sup>2</sup> ≠ 0 mod p。</p>
+<p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210331001025785.png" srcset="/img/loading.gif" lazyload alt="image-20210331001025785"></p>
+<h2 id="椭圆曲线上的群操作"><a href="#椭圆曲线上的群操作" class="headerlink" title="椭圆曲线上的群操作"></a>椭圆曲线上的群操作</h2><p>可以用加法符号”+“来表示群操作，两点相“加”得到第三点</p>
+<p>P + Q =R</p>
+<p>即(x<sub>1</sub> , y<sub>1</sub> ) + (x<sub>2</sub> , y<sub>2</sub>) = (x<sub>3</sub> , y<sub>3</sub>)</p>
+<p>两点相“加”的方式与这两点是否是相同点有关</p>
+<h4 id="相异点连线的交点并关于X轴对称的点即为得到的点："><a href="#相异点连线的交点并关于X轴对称的点即为得到的点：" class="headerlink" title="相异点连线的交点并关于X轴对称的点即为得到的点："></a>相异点连线的交点并关于X轴对称的点即为得到的点：</h4><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210331001246350.png" srcset="/img/loading.gif" lazyload alt="image-20210331001246350"></p>
+<h4 id="相同点切线的交点取对称："><a href="#相同点切线的交点取对称：" class="headerlink" title="相同点切线的交点取对称："></a>相同点切线的交点取对称：</h4><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210331001501795.png" srcset="/img/loading.gif" lazyload alt="image-20210331001501795"></p>
+<p>其坐标点的关系：</p>
+<p>$$<br>x_3 = s^2 - x_1 -x_2;mod;p\<br>y_3 = s(x_1 - x_3) - y_1;mod;p\<br>;\<br>其中s的值会因情况不同而变化\<br>;\<br>s=\left {<br>\begin{array}{c}<br>\frac {y_2 - y_1}{x_2 - x_1};mod;p;;;P≠Q\<br>\frac{3x^2_1 + a}{2y_1};mod;p;;P=Q<br>\end{array}<br>\right.<br>$$<br>注意：P + G =P    P + (-P) = G </p>
+<p>P(x<sub>p</sub> , y<sub>p</sub>)的逆元为-P(x<sub>p</sub> , -y<sub>p</sub>)，若在素数域上，则-P(x<sub>p</sub> , P-y<sub>p</sub>)</p>
+<p>对于椭圆加密曲线的群操作，相当于把以前的群的数字变成了坐标点，群操作也只是变得稍微抽象了一些。</p>
+<p>所以同样的，曲线上的点可以与G一起构成循环子群</p>
+<p>假如一个群的阶数为X，那么X*P = G，（X+1）* P = P</p>
+<p>相当于把之前的群的知识类比过来。</p>
+<h4 id="自然而然我们就可以构建出基于椭圆曲线的离散对数问题："><a href="#自然而然我们就可以构建出基于椭圆曲线的离散对数问题：" class="headerlink" title="自然而然我们就可以构建出基于椭圆曲线的离散对数问题："></a>自然而然我们就可以构建出基于椭圆曲线的离散对数问题：</h4><h4 id="P-P-…-P-d-P-T"><a href="#P-P-…-P-d-P-T" class="headerlink" title="P + P + … +P = d*P =T"></a>P + P + … +P = d*P =T</h4><p>有了基于椭圆曲线的离散对数问题，我们自然也可以得到基于椭圆曲线的密钥交换：</p>
+<h4 id="基于椭圆加密曲线的密钥交换"><a href="#基于椭圆加密曲线的密钥交换" class="headerlink" title="基于椭圆加密曲线的密钥交换"></a>基于椭圆加密曲线的密钥交换</h4><h5 id="ECDH域参数选取："><a href="#ECDH域参数选取：" class="headerlink" title="ECDH域参数选取："></a>ECDH域参数选取：</h5><p>1.素数p和椭圆曲线：</p>
+<p>​                y<sup>2</sup> ≡ x<sup>3</sup> + a*x + b mod p</p>
+<p>2.本原元P = (x<sub>p</sub> , y<sub>p</sub>) (此点可循环生成所有点)</p>
+<h5 id="椭圆曲线-Diffie-Hellman-密钥交换（ECDH）："><a href="#椭圆曲线-Diffie-Hellman-密钥交换（ECDH）：" class="headerlink" title="椭圆曲线 Diffie-Hellman 密钥交换（ECDH）："></a>椭圆曲线 Diffie-Hellman 密钥交换（ECDH）：</h5><p>Alice:                                                                                       Bob:</p>
+<p>选择k<sub>prA</sub> = a ∈ {2,3,…,#E-1}                             选择k<sub>prB</sub> = b ∈ {2,3,…,#E-1}</p>
+<p>计算k<sub>pubA</sub> =aP =A = (x<sub>A</sub> , y<sub>A</sub>)                              计算k<sub>pubB</sub> = bP =B ∈(x<sub>B</sub> , y<sub>B</sub>)</p>
+<p>​                                             A———–&gt;</p>
+<p>​                                             &lt;————B</p>
+<p>而后两人分别计算aB = T<sub>AB</sub>    ,    bA = T<sub>AB</sub></p>
+<p>就得到了联合密钥：T（x<sub>AB</sub> , y<sub>AB</sub>）</p>
 
             </div>
             <hr>
@@ -246,7 +266,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/ctf-crypto/">ctf-crypto</a>
+                      <a class="hover-with-bg" href="/categories/knowledge-crypto/">knowledge-crypto</a>
                     
                   </div>
                 
@@ -254,7 +274,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Crypto-ctf-rsa-aes/">-Crypto -ctf -rsa -aes</a>
+                      <a class="hover-with-bg" href="/tags/Crypto-ECC/">-Crypto -ECC</a>
                     
                   </div>
                 
@@ -271,15 +291,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/03/19/ElGamal/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ElGamal</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/03/31/LFSR/">
+                        <span class="hidden-mobile">LFSR</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

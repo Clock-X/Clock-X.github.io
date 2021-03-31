@@ -18,7 +18,7 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>2020BJDasa - Clock-X</title>
+  <title>2021hgame_aes_and_DH - Clock-X</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="2020BJDasa">
+            <span class="h2" id="subtitle" title="2021hgame_aes_and_DH">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-03-19 00:00" pubdate>
-        March 19, 2021 am
+      <time datetime="2021-03-19 13:06" pubdate>
+        March 19, 2021 pm
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      220 字
+      244 字
     </span>
   
 
@@ -225,19 +225,17 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">2020BJDasa</h1>
+            <h1 style="display: none">2021hgame_aes_and_DH</h1>
             
             <div class="markdown-body">
-              <h1 id="2020BJDasa"><a href="#2020BJDasa" class="headerlink" title="2020BJDasa"></a>2020BJDasa</h1><p>可以发现两个n公用了一个p,那么求取两个n的最大公因数就可以得到p,这样一来两个n就都可以被分解了。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> long_to_bytes<br>n1=<span class="hljs-number">0x661d752110bcc6ee5ca33edaf244716cccce6400dfdbfd84ce6ae2d8fbbeb2f61584da7668768403b6135e7810eae9d4d8e044935f8680de5324c3fc0f9bffb01812f9d2ac9055ee8dbd17b90c5a60cb7595a82f24a075d951db3b7f913b8543ecd52b8c8464ce348c3970d511ae911e814f9ca33b8412db2730e61820f5de47</span><br>p=<span class="hljs-number">9540203717217880059997385799331301649727503984010337568404427747385824530958536656147747848448822264268428226235860927158082497191830274046098671199542207</span><br>c1=<span class="hljs-number">0xd7931796fa39cfa37c0b621c01175904206dff1d74a28369dcd6517957ed76c5eb7d4934cbeb902119f9215f9ae7926debe3abe856244b45dbb4caaa2b93dbb79a3ca1a9813e1466c49fe3c03e5462811afbf3f40ff79927f9fe3681b7f3cef34466b9a736512f4931b5026eefacbae9be6e408085a7a636c514574c3b22ffe</span><br>q=n1//p<br>phi=(p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>)<br>e=<span class="hljs-number">65537</span><br>d=gp.invert(e,phi)<br>m=<span class="hljs-built_in">pow</span>(c1,d,n1)<br>print(long_to_bytes(m))<br><span class="hljs-comment">#key=b&#x27;\x89)\xef\x12\xa1\x7f\x14[\xc9\xb4\x8a\xfa,\x88\xa2\xef&#x27;</span><br></code></pre></td></tr></table></figure>
-
-<p>同理：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> long_to_bytes<br>p=<span class="hljs-number">9540203717217880059997385799331301649727503984010337568404427747385824530958536656147747848448822264268428226235860927158082497191830274046098671199542207</span><br>n2=<span class="hljs-number">0x9f159326c907441326c88d17eae1c6e8aaea23922c5e628a585294e379e9245644f9c249c57f54a2b83921b4adc988fecc90c00feb6936d9be1f3a5ffae951b74ffbc6fc7aa11743e4ca179a937392dacf931e820d1d83016562ff608e8c59ef7310654a09bbba4a0129f71dcb61bd9bef073bbb93bfcac4a7a2e81156dbb32d</span><br>c2=<span class="hljs-number">0x6240740d41a539a88634726cf0a791a87e02419c3c3e00dff62eba59e81a93fd04a59109e57f64fc375b9a321583b6fa133317eb5c4e6eb1e6f6d9a0b4ae6ff0c54423718811f7956cd63b7bf9c7f8e29f48dad8f05b63b71d6c5112d91864adba0d6bb342c67aee39ccd5e2a6928a8e4ab2248d29a0c990bae821b31b39b1f3</span><br>q=n2//p<br>phi=(p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>)<br>e=<span class="hljs-number">65537</span><br>d=gp.invert(e,phi)<br>m=<span class="hljs-built_in">pow</span>(c2,d,n2)<br>print(long_to_bytes(m))<br><span class="hljs-comment">#iv=b&#x27;\xf5\xf6\xa8\x8b\x08U\xedG\xe0\xdew\x1c\xaf&lt;\xb2&gt;&#x27;</span><br></code></pre></td></tr></table></figure>
-
-<p>iv和key都已求出，进行最后一步。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> AES<br><span class="hljs-keyword">import</span> binascii<br>key=<span class="hljs-string">b&#x27;\x89)\xef\x12\xa1\x7f\x14[\xc9\xb4\x8a\xfa,\x88\xa2\xef&#x27;</span><br>iv=<span class="hljs-string">b&#x27;\xf5\xf6\xa8\x8b\x08U\xedG\xe0\xdew\x1c\xaf&lt;\xb2&gt;&#x27;</span><br>aa = AES.new(key, AES.MODE_CBC, iv)<br>data = <span class="hljs-string">&#x27;f8559d671b720cd336f2d8518ad6eac8c405585158dfde74ced376ba42d9fe984d519dc185030ddec7b4dc240fd90fa8&#x27;</span><br>data = binascii.a2b_hex(data)<br>data = aa.decrypt(data)<br>print(data)<br></code></pre></td></tr></table></figure>
-
-
+              <p>出现了g**a mod p和g**b mod p,可以猜到是</p>
+<p>Differ-Hellman密钥交换，</p>
+<p>即真正的密钥是g**ab mod p,但因为a,b未知，所以要把a,b求出</p>
+<p>正常情况下是要求离散对数的，但因为对话中有提示是在加法群下操作的，</p>
+<p>而在加法群中，幂即重复调用改群的运算，即g**a mod p是a*g mod p</p>
+<p>又因为A = a*g mod p所以a=A*g<sup>-1</sup> mod p(g<sup>-1</sup>是g对p的逆元)，同理可以得到b的值，从而得到密钥的值。</p>
+<p>之后直接解AES即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> AES<br><span class="hljs-keyword">import</span> hashlib<br><span class="hljs-keyword">import</span> gmpy2 <span class="hljs-keyword">as</span> gp<br><span class="hljs-keyword">from</span> binascii <span class="hljs-keyword">import</span> a2b_hex<br>A = <span class="hljs-number">6407001517522031755461029087358686699246016691953286745456203144289666065160284103094131027888246726980488732095429549592118968601737506427099198442788626223019135982124788211819831979642738635150279126917220901861977041911299607913392143290015904211117118451848822390856596017775995010697100627886929406512483565105588306151304249791558742229557096175320767054998573953728418896571838697779621641522372719890056962681223595931519174265357487072296679757688238385898442549594049002467756836225770565740860731932911280385359763772064721179733418453824127593878917184915316616399071722555609838785743384947882543058635</span><br>B = <span class="hljs-number">5522084830673448802472379641008428434072040852768290130448235845195771339187395942646105104638930576247008845820145438300060808178610210847444428530002142556272450436372497461222761977462182452947513887074829637667167313239798703720635138224358712513217604569884276513251617003838008296082768599917178457307640326380587295666291524388123169244965414927588882003753247085026455845320527874258783530744522455308596065597902210653744845305271468086224187208396213207085588031362747352905905343508092625379341493584570041786625506585600322965052668481899375651376670219908567608009443985857358126335247278232020255467723</span><br>p = <span class="hljs-number">30567260905179651419358486099834315837354102714690253338851161207042846254351374572818884286661092938876675032728700590336029243619773064402923830209873155153338320502164587381848849791304214084993139233581072431814555885408821184652544361671134564827265516331283076223247829980225591857643487356406284913560960657053777612115591241983729716542192518684003840806442329098770424504275465756739925434019460351138273272559738332984560095465809481270198689251655392941966835733947437503158486731906649716026200661065054914445245468517406404904444261196826370252359102324767986314473183183059212009545789665906197844518119</span><br>g = <span class="hljs-number">12602983924735419868428783329859102652072837431735895060811258460532600319539509800915989811879506790207025505003183121812480524033163157114086741486989697</span><br>x1 = gp.invert(g,p)*A%p<br>x2 = gp.invert(g,p)*B%p<br>key1 = x1*x2*g%p<br>shared_secret = key1<br>sha1 = hashlib.sha1()<br>sha1.update(<span class="hljs-built_in">str</span>(shared_secret).encode(<span class="hljs-string">&#x27;ascii&#x27;</span>))<br>key = sha1.digest()[:<span class="hljs-number">16</span>]<br>iv1 = a2b_hex(<span class="hljs-string">&#x27;d3811beb5cd2a4e1e778207ab541082b&#x27;</span>)<br>iv2= a2b_hex(<span class="hljs-string">&#x27;b4259ed79d050dabc7eab0c77590a6d0&#x27;</span>)<br>data1 = a2b_hex(<span class="hljs-string">&#x27;059e9c216bcc14e5d6901bcf651bee361d9fe42f225bc0539935671926e6c092&#x27;</span>)<br>data2 = a2b_hex(<span class="hljs-string">&#x27;af3fe410a6927cc227051f587a76132d668187e0de5ebf0608598a870a4bbc89&#x27;</span>)<br>decrypt1 = AES.new(key,AES.MODE_CBC,iv1)<br>decrypt2 = AES.new(key,AES.MODE_CBC,iv2)<br>flag1 = decrypt1.decrypt(data1)<br>flag2 = decrypt2.decrypt(data2)<br>print(flag1,flag2)<br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
@@ -254,7 +252,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Crypto-ctf-rsa-aes/">-Crypto -ctf -rsa -aes</a>
+                      <a class="hover-with-bg" href="/tags/Crypto-ctf-DH-aes/">-Crypto -ctf -DH -aes</a>
                     
                   </div>
                 
@@ -271,15 +269,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/03/19/ElGamal/">
+                      <a href="/2021/03/31/LFSR/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ElGamal</span>
+                        <span class="hidden-mobile">LFSR</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/03/19/RSA%E5%B8%B8%E8%A7%81%E9%A2%98%E5%9E%8B%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89/">
+                        <span class="hidden-mobile">rsa初期</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
