@@ -228,7 +228,7 @@
             <h1 style="display: none">LFSR</h1>
             
             <div class="markdown-body">
-              <h1 id="lfsr-线性反馈位移器-小结"><a href="#lfsr-线性反馈位移器-小结" class="headerlink" title="lfsr(线性反馈位移器)小结"></a>lfsr(线性反馈位移器)小结</h1><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210330203704719.png" srcset="/img/loading.gif" lazyload alt="image-20210330203704719"></p>
+              <h1 id="lfsr-线性反馈位移器-小结"><a href="#lfsr-线性反馈位移器-小结" class="headerlink" title="lfsr(线性反馈位移器)小结"></a>lfsr(线性反馈位移器)小结</h1><p><img src="https://i.loli.net/2021/04/19/B9S6y5NdLcMWImu.png" srcset="/img/loading.gif" lazyload alt="image-20210330203704719.png"></p>
 <p>如图，lfsr拥有m个触发器和m个可能的反馈位置，系数p<sub>i</sub>即反馈系数，s<sub>i</sub>与p<sub>i</sub>异或后（此处为一一对应异或），得到的一串新的序列，这一串序列再一一异或过去得到新的值也就是s<sub>m</sub>,同时s<sub>0</sub>会被输出，s<sub>m</sub>会接替s<sub>m-1</sub>的位置，整个序列相当于向前移了一个位置。</p>
 <p>（感觉这样说不是很清楚，还是上公式吧）</p>
 <p>s<sub>m</sub> ≡ s<sub>m-1</sub>p<sub>m-1</sub> + … + s<sub>1</sub>p<sub>1</sub> + s<sub>0</sub>p<sub>0</sub> mod 2(s<sub>m</sub> = s<sub>m-1</sub>p<sub>m-1</sub> ⊕ …  ⊕ s<sub>1</sub>p<sub>1</sub> ⊕ s<sub>0</sub>p<sub>0</sub>)</p>
@@ -247,7 +247,7 @@
 <p>就可以解出p<sub>i</sub> 了。</p>
 <p>这样看来lfsr是极易受到攻击的，所以我们往往组合使用。</p>
 <h2 id="Trivium"><a href="#Trivium" class="headerlink" title="Trivium"></a>Trivium</h2><p>将三个位移寄存器结合使用，并借助AND操作提高了安全性。</p>
-<p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210330213351934.png" srcset="/img/loading.gif" lazyload alt="image-20210330213351934"></p>
+<p><img src="https://i.loli.net/2021/04/19/o6bYfH2OFhqTlLA.png" srcset="/img/loading.gif" lazyload alt="image-20210330213351934.jpg"></p>
 <p>A位移反馈器长度为93，除去正常的位移器运行，69位会作为反馈为影响输入，66位则作为前馈位影响输出，同时91,92位进行AND操作与前馈位一起影响输出，而A的输出会作为B的输入的一部分，B的输出又会作为C的输入，而C的输出又将作为影响A的输入的一部分，而我们得到的密钥序列是A,B,C三个位移器的输出的异或值。</p>
 <p>使用Trivium进行加密：</p>
 <p>1.初始化阶段：将80位的iv加载至A,B最左边，C最右边3位为1，剩余都设置为0.</p>
