@@ -240,7 +240,7 @@
 <h4 id="相异点连线的交点并关于X轴对称的点即为得到的点："><a href="#相异点连线的交点并关于X轴对称的点即为得到的点：" class="headerlink" title="相异点连线的交点并关于X轴对称的点即为得到的点："></a>相异点连线的交点并关于X轴对称的点即为得到的点：</h4><p><img src="https://i.loli.net/2021/04/19/Dg6SMByqOF28zhw.png" srcset="/img/loading.gif" lazyload alt="image-20210331001246350.png"></p>
 <h4 id="相同点切线的交点取对称："><a href="#相同点切线的交点取对称：" class="headerlink" title="相同点切线的交点取对称："></a>相同点切线的交点取对称：</h4><p><img src="https://i.loli.net/2021/04/19/pFY2QxdetEqJIbf.png" srcset="/img/loading.gif" lazyload alt="image-20210331001501795.png"></p>
 <p>其坐标点的关系：</p>
-<p>$$<br>x_3 = s^2 - x_1 -x_2;mod;p\<br>y_3 = s(x_1 - x_3) - y_1;mod;p\<br>;\<br>其中s的值会因情况不同而变化\<br>;\<br>s=\left {<br>\begin{array}{c}<br>\frac {y_2 - y_1}{x_2 - x_1};mod;p;;;P≠Q\<br>\frac{3x^2_1 + a}{2y_1};mod;p;;P=Q<br>\end{array}<br>\right.<br>$$<br>注意：P + G =P    P + (-P) = G </p>
+<p>$$<br>x_3 = s^2 - x_1 - x_2;mod;p\<br>y_3 = s(x_1 - x_3) - y_1;mod;p\<br>;\<br>其中s的值会因情况不同而变化\<br>;\<br>s=\left{<br>\begin{array}{c}<br>\frac {y_2 - y_1}{x_2 - x_1};mod;p;;P≠Q\<br>\frac{3x^2_1 + a}{2y_1};mod;p;;P=Q<br>\end{array}<br>\right.<br>$$<br>注意：P + G =P    P + (-P) = G </p>
 <p>P(x<sub>p</sub> , y<sub>p</sub>)的逆元为-P(x<sub>p</sub> , -y<sub>p</sub>)，若在素数域上，则-P(x<sub>p</sub> , P-y<sub>p</sub>)</p>
 <p>对于椭圆加密曲线的群操作，相当于把以前的群的数字变成了坐标点，群操作也只是变得稍微抽象了一些。</p>
 <p>所以同样的，曲线上的点可以与G一起构成循环子群</p>
@@ -455,6 +455,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
 
 
 
