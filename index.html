@@ -194,6 +194,383 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/05/28/DC-1/">DC-1</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/05/28/DC-1/">
+          
+          
+            
+          
+          DC-112nmap -sP 192.168.93.0/24#扫描局域网内的ip确定主机nmap -sV 192.168.93.79#扫描靶机开方的端口
+
+
+
+发现开放三个端口，我们先访问80端口。
+看到了Drupal,启动msfconsole,并寻找相关攻击模块。
+12msfconsolesearch Drupal
+
+
+
+选择最新的模块进行攻击。
+123use exploit/unix/weba
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-28 12:39" pubdate>
+              2021-05-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/redteam/">redteam</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/web-DC/">-web -DC</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/28/%E5%9F%BA%E4%BA%8E%E6%A0%BC%E7%9A%84%E9%80%9A%E7%94%A8%E7%A7%81%E9%92%A5%E6%94%BB%E5%87%BB%EF%BC%88RSA%E7%94%A8%E4%BA%86%E5%90%8C%E4%B8%80%E4%B8%AAd%EF%BC%89/">基于格的通用私钥攻击</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/05/28/%E5%9F%BA%E4%BA%8E%E6%A0%BC%E7%9A%84%E9%80%9A%E7%94%A8%E7%A7%81%E9%92%A5%E6%94%BB%E5%87%BB%EF%BC%88RSA%E7%94%A8%E4%BA%86%E5%90%8C%E4%B8%80%E4%B8%AAd%EF%BC%89/">
+          
+          
+            
+          
+          基于格的通用私钥攻击（RSA用了同一个d）假设现在有r组n,e，他们的私钥均为d，则有：
+e1*d = k1*phi(N1) + 1 
+e2*d = k2*phi(N2) + 1
+​     . . .
+*erd = kr*phi(N3) + 1
+此处默认（N1 &lt; N2 &lt; … &lt; Nr &lt; 2Nr ）
+令 M = [Nr1/2 ]
+ phi(Nr )= Ni - si 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-28 12:39" pubdate>
+              2021-05-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/knowledge-crypto/">knowledge-crypto</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Crypto-RSA/">-Crypto -RSA</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/28/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">PHP反序列化</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/05/28/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+          
+          
+            
+          
+          PHP反序列化为了能够跨平台存贮，有时候我们会将对象的信息转化为可以存储或传输的形式，这就是序列化（比如json），相应的，我们把数据恢复回来，就叫反序列化。
+php相关函数：
+serialize() 返回一个包含字节流的字符串，序列化对象返回的字符串似乎与其打印出的字符串有所不同。（可能有部分内容没有显示，似乎是两个字符的差异，所以修改时建议使用str_replace()）
+unserializ
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-28 12:39" pubdate>
+              2021-05-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/web/">web</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/web-PHP/">-web -PHP</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/28/php%20strcmp()%E5%87%BD%E6%95%B0%E6%BC%8F%E6%B4%9E/">php strcmp()函数漏洞</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/05/28/php%20strcmp()%E5%87%BD%E6%95%B0%E6%BC%8F%E6%B4%9E/">
+          
+          
+            
+          
+          php strcmp()函数漏洞php&lt;5.3
+strcmp()接受两个string类型,但如果接受了错误的类型，函数会发生错误，但是在5.3之前的php中，显示了报错的警告信息后，函数将return 0，也就是虽然报了错，但却判定其相等。
+绕过该函数时使其接受对象为数组或对象。
+我们在post数据时，php为了可以上传一个数组，会把结尾带一对中括号的变量
+如a[]=123,此处其实上传了一
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-28 12:39" pubdate>
+              2021-05-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/web/">web</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/web-PHP/">-web -PHP</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/28/DC-3/">DC-3</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/05/28/DC-3/">
+          
+          
+            
+          
+          DC-3nmap扫出靶机及其端口，框架，而后在浏览器上访问。
+提示只有一个flag，且需要root权限。
+框架为joomla，在msfconsole上找到对应模块逐一尝试，没能成功，但成功找到了对应版本号3.7.0
+在网络上继续搜索相应漏洞，发现该版本有对应的sql注入漏洞，回到浏览器进行尝试，而后注入得到数据库名。
+ 
+再次使用joomscan工具进行扫描
+1perl joomscan.pl -
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-28 12:39" pubdate>
+              2021-05-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/redteam/">redteam</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/web-DC/">-web -DC</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/28/DC-2/">DC-2</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/05/28/DC-2/">
+          
+          
+            
+          
+          DC-2先扫描当前网段下的ip确定靶机。
+1nmap -sP 192.168.93.0/24
+
+扫描靶机开放的端口
+1nmap -sV 192.168.93.152
+
+发现开放80端口，用浏览器进行访问
+发现ip地址被直接转成了dc-2，而且无法访问，页面显示无法解析出ip地址
+进入kali下的/etc/hosts,在末尾加上192.168.93.152 dc-2即可。
+再次访问页面，可以正常访问
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-28 12:39" pubdate>
+              2021-05-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/redteam/">redteam</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/web-DC/">-web -DC</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/16/%E6%A0%BC%E7%9B%B8%E5%85%B3/">格相关</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/05/16/%E6%A0%BC%E7%9B%B8%E5%85%B3/">
+          
+          
+            
+          
+          格相关格的定义$${设线性无关向量组v_1,v_2,…,v_n \in R^m，该组向量生成的格L即是该组向量的线性组合的集合，\且其系数a_1,a_2,…,a_n\in Z^n,即;L = {a_1v_1+a_2v_2+…+a_nv_n,a_n\in Z}}$$
+与格相关的计算性问题$${;;;1.SVP(最短向量问题)：在格L中寻找一个最短的非零向量，即寻找一个非零向量v\in L使得其范数|
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-16 16:51" pubdate>
+              2021-05-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/knowledge-crypto/">knowledge-crypto</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Crypto-Lattice/">-Crypto -Lattice</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/03/31/ECC/">ECC</a>
       </h1>
 
@@ -345,162 +722,13 @@ Differ-Hellman密钥交换，
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/03/19/RSA%E5%B8%B8%E8%A7%81%E9%A2%98%E5%9E%8B%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89/">rsa初期</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/03/19/RSA%E5%B8%B8%E8%A7%81%E9%A2%98%E5%9E%8B%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89/">
-          
-          
-            
-          
-          RSA常见题型一、普通解密(给出e,c，且已知p,q或较易分解的n)可以直接根据RSA的基本原理写出脚本，对于较易分解的n可以使用factor网站在线质因数分解，也可以使用yafu工具进行分解。
-基本解密过程：
-phi(n)=(p-1)*(q-1) #计算欧拉函数
-ed≡1 mod phi(n) #通过该表达式求密钥d
-c**d≡m mod n #最后求得明文m
-注意：计算出的m是一串数字，要得到
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-03-19 00:00" pubdate>
-              2021-03-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/ctf-crypto/">ctf-crypto</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Crypto-ctf-rsa-aes/">-Crypto -ctf -rsa -aes</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/03/19/ElGamal/">ElGamal</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/03/19/ElGamal/">
-          
-          
-            
-          
-          ElGamalElGamal算法此时有一个需被加密的消息x。
-密钥生成：
-随机取一个大素数p，并取Zp*的一个本原元作为α，再从{2,…,p-2}中随机取一个数作为d,计算β ≡ αd mod p 。({d}为私钥，{p,α,β}为公钥。)
-加密：
-再次从{2,…p-2}中随机取一个数作为r,计算kr≡αr mod p。计算km≡βr mod p。
-计算y≡km*x mod p，y就是加密出的密文
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-03-19 00:00" pubdate>
-              2021-03-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/knowledge-crypto/">knowledge-crypto</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Crypto-ElGaml/">-Crypto -ElGaml</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/03/19/asa/">2020BJDasa</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/03/19/asa/">
-          
-          
-            
-          
-          2020BJDasa可以发现两个n公用了一个p,那么求取两个n的最大公因数就可以得到p,这样一来两个n就都可以被分解了。
-123456789101112import gmpy2 as gpfrom Crypto.Util.number import long_to_bytesn1=0x661d752110bcc6ee5ca33edaf244716cccce6400dfdbfd84ce6ae2d8f
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-03-19 00:00" pubdate>
-              2021-03-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/ctf-crypto/">ctf-crypto</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Crypto-ctf-rsa-aes/">-Crypto -ctf -rsa -aes</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
 
 
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
 
 
 

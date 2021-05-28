@@ -18,9 +18,25 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>Categories - Clock-X</title>
+  <title>基于格的通用私钥攻击 - Clock-X</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -48,7 +64,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -159,9 +175,46 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Category">
+            <span class="h2" id="subtitle" title="基于格的通用私钥攻击">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-28 12:39" pubdate>
+        May 28, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      189 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      3
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -174,240 +227,111 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">基于格的通用私钥攻击</h1>
+            
+            <div class="markdown-body">
+              <h1 id="基于格的通用私钥攻击（RSA用了同一个d）"><a href="#基于格的通用私钥攻击（RSA用了同一个d）" class="headerlink" title="基于格的通用私钥攻击（RSA用了同一个d）"></a>基于格的通用私钥攻击（RSA用了同一个d）</h1><p>假设现在有r组n,e，他们的私钥均为d，则有：</p>
+<p><strong>e<sub>1</sub>*d = k<sub>1</sub>*phi(N<sub>1</sub>) + 1</strong> </p>
+<p><strong>e<sub>2</sub>*d = k<sub>2</sub>*phi(N<sub>2</sub>) + 1</strong></p>
+<p>​     <strong>. . .</strong></p>
+<p>*<em>e<sub>r</sub><em>d = k<sub>r</sub>*phi(N<sub>3</sub>) + 1</em></em></p>
+<p>此处默认（N<sub>1</sub> &lt; N<sub>2</sub> &lt; … &lt; N<sub>r</sub> &lt; 2N<sub>r</sub> ）</p>
+<p>令 M = [N<sub>r</sub><sup>1/2</sup> ]</p>
+<p> phi(N<sub>r</sub> )= N<sub>i</sub> - s<sub>i</sub> 且k<sub>i</sub> &lt; d (i = 1,2,…,r)</p>
+<p>则有：e<sub>i</sub>*d - N<sub>i</sub>*k<sub>i</sub> = 1 - k<sub>i</sub>*s<sub>i</sub>  </p>
+<p>可以列出下列等式：</p>
+<p>​            <strong>dM = dM</strong></p>
+<p><strong>e<sub>1</sub>*d - N<sub>1</sub>*k<sub>1</sub> = 1 - k<sub>1</sub>*s<sub>1</sub></strong></p>
+<p><strong>e<sub>2</sub>*d - N<sub>2</sub>*k<sub>2</sub> = 1 - k<sub>2</sub>*s<sub>2</sub></strong></p>
+<p>​    <strong>. . .</strong></p>
+<p><strong>e<sub>r</sub>*d - N<sub>r</sub>*k<sub>r</sub> = 1 - k<sub>r</sub>*s<sub>r</sub></strong></p>
+<p>可以构造<br>$$<br>x_r*B_r = v_r\<br>x_r = (d,k_1,k_2,…,k_r)<br>$$</p>
+<p>$$<br>B_r =<br>\begin{bmatrix}<br>{M}&amp;{e_1}&amp;{\cdots}&amp;{e_r}\<br>{0}&amp;{-N_1}&amp;{\cdots}&amp;{0}\<br>{\vdots}&amp;{\vdots}&amp;{\ddots}&amp;{\vdots}\<br>{0}&amp;{0}&amp;{\cdots}&amp;{-N_r}\<br>\end{bmatrix}\<br>vr = (dM,1-k_1<em>s_1,…,1-k_r</em>s_r)<br>$$<br>而后对B<SUB>r</SUB> 使用LLL算法得到向量b,最后<br>$$<br>d = \frac{|b|}{M}<br>$$</p>
 
-
-
-
-
-
-<div class="category-list">
-  
-  
-  
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-b5acc6c731e13b1bdea90b3f314fd0e9" role="tab" data-toggle="collapse" href="#collapse-b5acc6c731e13b1bdea90b3f314fd0e9"
-        aria-expanded="false"
-      >
-        knowledge-crypto
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/knowledge-crypto/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>5</span>
-      </a>
-      <div class="category-collapse">
-        
-        
-          
-  <div id="collapse-b5acc6c731e13b1bdea90b3f314fd0e9" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-b5acc6c731e13b1bdea90b3f314fd0e9">
-    
-    
-      
-      
-        <a href="/2021/05/28/%E5%9F%BA%E4%BA%8E%E6%A0%BC%E7%9A%84%E9%80%9A%E7%94%A8%E7%A7%81%E9%92%A5%E6%94%BB%E5%87%BB%EF%BC%88RSA%E7%94%A8%E4%BA%86%E5%90%8C%E4%B8%80%E4%B8%AAd%EF%BC%89/" class="list-group-item list-group-item-action">
-          <span class="category-post">基于格的通用私钥攻击</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/16/%E6%A0%BC%E7%9B%B8%E5%85%B3/" class="list-group-item list-group-item-action">
-          <span class="category-post">格相关</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/03/31/ECC/" class="list-group-item list-group-item-action">
-          <span class="category-post">ECC</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/03/31/LFSR/" class="list-group-item list-group-item-action">
-          <span class="category-post">LFSR</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/03/19/ElGamal/" class="list-group-item list-group-item-action">
-          <span class="category-post">ElGamal</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-cc8f0bea0d36a20bb3498dcafe0e17be" role="tab" data-toggle="collapse" href="#collapse-cc8f0bea0d36a20bb3498dcafe0e17be"
-        aria-expanded="false"
-      >
-        ctf-crypto
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/ctf-crypto/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>3</span>
-      </a>
-      <div class="category-collapse">
-        
-        
-          
-  <div id="collapse-cc8f0bea0d36a20bb3498dcafe0e17be" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-cc8f0bea0d36a20bb3498dcafe0e17be">
-    
-    
-      
-      
-        <a href="/2021/03/19/hgame_aes_and_differ-hellman/" class="list-group-item list-group-item-action">
-          <span class="category-post">2021hgame_aes_and_DH</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/03/19/RSA%E5%B8%B8%E8%A7%81%E9%A2%98%E5%9E%8B%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89/" class="list-group-item list-group-item-action">
-          <span class="category-post">rsa初期</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/03/19/asa/" class="list-group-item list-group-item-action">
-          <span class="category-post">2020BJDasa</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-aaf5ad4fcdf2e7aaeeef3a52d56ed46e" role="tab" data-toggle="collapse" href="#collapse-aaf5ad4fcdf2e7aaeeef3a52d56ed46e"
-        aria-expanded="false"
-      >
-        redteam
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/redteam/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>3</span>
-      </a>
-      <div class="category-collapse">
-        
-        
-          
-  <div id="collapse-aaf5ad4fcdf2e7aaeeef3a52d56ed46e" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-aaf5ad4fcdf2e7aaeeef3a52d56ed46e">
-    
-    
-      
-      
-        <a href="/2021/05/28/DC-1/" class="list-group-item list-group-item-action">
-          <span class="category-post">DC-1</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/28/DC-3/" class="list-group-item list-group-item-action">
-          <span class="category-post">DC-3</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/28/DC-2/" class="list-group-item list-group-item-action">
-          <span class="category-post">DC-2</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-2567a5ec9705eb7ac2c984033e06189d" role="tab" data-toggle="collapse" href="#collapse-2567a5ec9705eb7ac2c984033e06189d"
-        aria-expanded="false"
-      >
-        web
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/web/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>2</span>
-      </a>
-      <div class="category-collapse">
-        
-        
-          
-  <div id="collapse-2567a5ec9705eb7ac2c984033e06189d" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-2567a5ec9705eb7ac2c984033e06189d">
-    
-    
-      
-      
-        <a href="/2021/05/28/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="list-group-item list-group-item-action">
-          <span class="category-post">PHP反序列化</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/28/php%20strcmp()%E5%87%BD%E6%95%B0%E6%BC%8F%E6%B4%9E/" class="list-group-item list-group-item-action">
-          <span class="category-post">php strcmp()函数漏洞</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-</div>
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/knowledge-crypto/">knowledge-crypto</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Crypto-RSA/">-Crypto -RSA</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/05/28/DC-1/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">DC-1</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/28/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+                        <span class="hidden-mobile">PHP反序列化</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -488,9 +412,15 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
 
 

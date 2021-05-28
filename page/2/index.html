@@ -18,7 +18,7 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>Categories - Clock-X</title>
+  <title>Clock-X</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -48,7 +48,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 100vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -159,13 +159,17 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Category">
+            <span class="h2" id="subtitle" title="世界是客栈，死亡是旅行的终点。">
               
             </span>
 
             
           </div>
 
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
           
         </div>
       </div>
@@ -176,7 +180,7 @@
     
       <div class="container nopadding-x-md">
         <div class="py-5" id="board"
-          >
+          style=margin-top:0>
           
           <div class="container">
             <div class="row">
@@ -184,224 +188,170 @@
                 
 
 
-
-
-
-
-
-<div class="category-list">
-  
-  
-  
-  
+  <div class="row mx-auto index-card">
     
     
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-b5acc6c731e13b1bdea90b3f314fd0e9" role="tab" data-toggle="collapse" href="#collapse-b5acc6c731e13b1bdea90b3f314fd0e9"
-        aria-expanded="false"
-      >
-        knowledge-crypto
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/knowledge-crypto/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>5</span>
-      </a>
-      <div class="category-collapse">
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
         
-        
+        <a href="/2021/03/19/RSA%E5%B8%B8%E8%A7%81%E9%A2%98%E5%9E%8B%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89/">rsa初期</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/03/19/RSA%E5%B8%B8%E8%A7%81%E9%A2%98%E5%9E%8B%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89/">
           
-  <div id="collapse-b5acc6c731e13b1bdea90b3f314fd0e9" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-b5acc6c731e13b1bdea90b3f314fd0e9">
-    
-    
-      
-      
-        <a href="/2021/05/28/%E5%9F%BA%E4%BA%8E%E6%A0%BC%E7%9A%84%E9%80%9A%E7%94%A8%E7%A7%81%E9%92%A5%E6%94%BB%E5%87%BB%EF%BC%88RSA%E7%94%A8%E4%BA%86%E5%90%8C%E4%B8%80%E4%B8%AAd%EF%BC%89/" class="list-group-item list-group-item-action">
-          <span class="category-post">基于格的通用私钥攻击</span>
+          
+            
+          
+          RSA常见题型一、普通解密(给出e,c，且已知p,q或较易分解的n)可以直接根据RSA的基本原理写出脚本，对于较易分解的n可以使用factor网站在线质因数分解，也可以使用yafu工具进行分解。
+基本解密过程：
+phi(n)=(p-1)*(q-1) #计算欧拉函数
+ed≡1 mod phi(n) #通过该表达式求密钥d
+c**d≡m mod n #最后求得明文m
+注意：计算出的m是一串数字，要得到
         </a>
-      
-    
-      
-      
-        <a href="/2021/05/16/%E6%A0%BC%E7%9B%B8%E5%85%B3/" class="list-group-item list-group-item-action">
-          <span class="category-post">格相关</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/03/31/ECC/" class="list-group-item list-group-item-action">
-          <span class="category-post">ECC</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/03/31/LFSR/" class="list-group-item list-group-item-action">
-          <span class="category-post">LFSR</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/03/19/ElGamal/" class="list-group-item list-group-item-action">
-          <span class="category-post">ElGamal</span>
-        </a>
-      
-    
-  </div>
+      </p>
 
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-03-19 00:00" pubdate>
+              2021-03-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ctf-crypto/">ctf-crypto</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Crypto-ctf-rsa-aes/">-Crypto -ctf -rsa -aes</a>
+            
+          </div>
         
       </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-cc8f0bea0d36a20bb3498dcafe0e17be" role="tab" data-toggle="collapse" href="#collapse-cc8f0bea0d36a20bb3498dcafe0e17be"
-        aria-expanded="false"
-      >
-        ctf-crypto
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/ctf-crypto/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>3</span>
-      </a>
-      <div class="category-collapse">
-        
-        
-          
-  <div id="collapse-cc8f0bea0d36a20bb3498dcafe0e17be" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-cc8f0bea0d36a20bb3498dcafe0e17be">
-    
-    
-      
-      
-        <a href="/2021/03/19/hgame_aes_and_differ-hellman/" class="list-group-item list-group-item-action">
-          <span class="category-post">2021hgame_aes_and_DH</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/03/19/RSA%E5%B8%B8%E8%A7%81%E9%A2%98%E5%9E%8B%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89/" class="list-group-item list-group-item-action">
-          <span class="category-post">rsa初期</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/03/19/asa/" class="list-group-item list-group-item-action">
-          <span class="category-post">2020BJDasa</span>
-        </a>
-      
-    
+    </article>
   </div>
 
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/03/19/ElGamal/">ElGamal</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/03/19/ElGamal/">
+          
+          
+            
+          
+          ElGamalElGamal算法此时有一个需被加密的消息x。
+密钥生成：
+随机取一个大素数p，并取Zp*的一个本原元作为α，再从{2,…,p-2}中随机取一个数作为d,计算β ≡ αd mod p 。({d}为私钥，{p,α,β}为公钥。)
+加密：
+再次从{2,…p-2}中随机取一个数作为r,计算kr≡αr mod p。计算km≡βr mod p。
+计算y≡km*x mod p，y就是加密出的密文
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-03-19 00:00" pubdate>
+              2021-03-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/knowledge-crypto/">knowledge-crypto</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Crypto-ElGaml/">-Crypto -ElGaml</a>
+            
+          </div>
         
       </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-aaf5ad4fcdf2e7aaeeef3a52d56ed46e" role="tab" data-toggle="collapse" href="#collapse-aaf5ad4fcdf2e7aaeeef3a52d56ed46e"
-        aria-expanded="false"
-      >
-        redteam
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/redteam/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>3</span>
-      </a>
-      <div class="category-collapse">
-        
-        
-          
-  <div id="collapse-aaf5ad4fcdf2e7aaeeef3a52d56ed46e" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-aaf5ad4fcdf2e7aaeeef3a52d56ed46e">
-    
-    
-      
-      
-        <a href="/2021/05/28/DC-1/" class="list-group-item list-group-item-action">
-          <span class="category-post">DC-1</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/28/DC-3/" class="list-group-item list-group-item-action">
-          <span class="category-post">DC-3</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/28/DC-2/" class="list-group-item list-group-item-action">
-          <span class="category-post">DC-2</span>
-        </a>
-      
-    
+    </article>
   </div>
 
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/03/19/asa/">2020BJDasa</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/03/19/asa/">
+          
+          
+            
+          
+          2020BJDasa可以发现两个n公用了一个p,那么求取两个n的最大公因数就可以得到p,这样一来两个n就都可以被分解了。
+123456789101112import gmpy2 as gpfrom Crypto.Util.number import long_to_bytesn1=0x661d752110bcc6ee5ca33edaf244716cccce6400dfdbfd84ce6ae2d8f
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-03-19 00:00" pubdate>
+              2021-03-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ctf-crypto/">ctf-crypto</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Crypto-ctf-rsa-aes/">-Crypto -ctf -rsa -aes</a>
+            
+          </div>
         
       </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-2567a5ec9705eb7ac2c984033e06189d" role="tab" data-toggle="collapse" href="#collapse-2567a5ec9705eb7ac2c984033e06189d"
-        aria-expanded="false"
-      >
-        web
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/web/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>2</span>
-      </a>
-      <div class="category-collapse">
-        
-        
-          
-  <div id="collapse-2567a5ec9705eb7ac2c984033e06189d" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-2567a5ec9705eb7ac2c984033e06189d">
-    
-    
-      
-      
-        <a href="/2021/05/28/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="list-group-item list-group-item-action">
-          <span class="category-post">PHP反序列化</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/28/php%20strcmp()%E5%87%BD%E6%95%B0%E6%BC%8F%E6%B4%9E/" class="list-group-item list-group-item-action">
-          <span class="category-post">php strcmp()函数漏洞</span>
-        </a>
-      
-    
+    </article>
   </div>
 
-        
-      </div>
-    </div>
-  
-</div>
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
+
+
 
               </div>
             </div>

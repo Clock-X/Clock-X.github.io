@@ -18,9 +18,25 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>Categories - Clock-X</title>
+  <title>格相关 - Clock-X</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -48,7 +64,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -159,9 +175,46 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Category">
+            <span class="h2" id="subtitle" title="格相关">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-16 16:51" pubdate>
+        May 16, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      375 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      4
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -174,240 +227,97 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">格相关</h1>
+            
+            <div class="markdown-body">
+              <h1 id="格相关"><a href="#格相关" class="headerlink" title="格相关"></a>格相关</h1><h2 id="格的定义"><a href="#格的定义" class="headerlink" title="格的定义"></a>格的定义</h2><p>$$<br>{设线性无关向量组v_1,v_2,…,v_n \in R^m，该组向量生成的格L即是该组向量的线性组合的集合，\<br>且其系数a_1,a_2,…,a_n\in Z^n,即;L = {a_1v_1+a_2v_2+…+a_nv_n,a_n\in Z}}<br>$$</p>
+<h3 id="与格相关的计算性问题"><a href="#与格相关的计算性问题" class="headerlink" title="与格相关的计算性问题"></a>与格相关的计算性问题</h3><p>$$<br>{;;;1.SVP(最短向量问题)：在格L中寻找一个最短的非零向量，即寻找一个非零向量v\in L使得其范数||v||最小。<br>}<br>\<br>{2.CVP(在格中寻找与指定非格向量最为接近的向量)：对于一个不在格中的向量w,寻找一个向量v\in L使得\<br>||w-v||最小}<br>$$</p>
+<h2 id="LLL算法"><a href="#LLL算法" class="headerlink" title="LLL算法"></a>LLL算法</h2><p>可以求解SVP问题<br>$$<br>输入一组格的基b_1,b_2,…,b_n \in Z^n进行下列计算\<br>{for;i=2;to;n;do}\<br>\qquad\qquad for;j=i-1;to;do\<br>\qquad\qquad\qquad\qquad\qquad\qquad\qquad<br>b_i = b_i-c_i,_jb_j ;（c_i,_j=[\frac{\langle b_i,b^*_j\rangle}{\langle b^*_j,b^*_j\rangle}]）\<br>{而后进行比对，如果;\delta ||b^*_i||&gt;||\mu _{i+1},<em>ib^*<em>i+b^*</em>{i+1}||\<br>则交换b_i和b</em>{i+1}的值，并回到第一步。\<br>最后输出b_1,b_2,…,b_n。}<br>$$<br>我的理解就是先对这组基做一个施密特正交化，并记下正交化时向量前的系数，而后对输入的基做一个变幻，从第二个开始每个向量减去前面所有的向量与其对应‘系数’的乘积的和，再看看是否满足所需条件。满足就进行交换而后回到开始再来一遍。</p>
 
-
-
-
-
-
-<div class="category-list">
-  
-  
-  
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-b5acc6c731e13b1bdea90b3f314fd0e9" role="tab" data-toggle="collapse" href="#collapse-b5acc6c731e13b1bdea90b3f314fd0e9"
-        aria-expanded="false"
-      >
-        knowledge-crypto
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/knowledge-crypto/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>5</span>
-      </a>
-      <div class="category-collapse">
-        
-        
-          
-  <div id="collapse-b5acc6c731e13b1bdea90b3f314fd0e9" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-b5acc6c731e13b1bdea90b3f314fd0e9">
-    
-    
-      
-      
-        <a href="/2021/05/28/%E5%9F%BA%E4%BA%8E%E6%A0%BC%E7%9A%84%E9%80%9A%E7%94%A8%E7%A7%81%E9%92%A5%E6%94%BB%E5%87%BB%EF%BC%88RSA%E7%94%A8%E4%BA%86%E5%90%8C%E4%B8%80%E4%B8%AAd%EF%BC%89/" class="list-group-item list-group-item-action">
-          <span class="category-post">基于格的通用私钥攻击</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/16/%E6%A0%BC%E7%9B%B8%E5%85%B3/" class="list-group-item list-group-item-action">
-          <span class="category-post">格相关</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/03/31/ECC/" class="list-group-item list-group-item-action">
-          <span class="category-post">ECC</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/03/31/LFSR/" class="list-group-item list-group-item-action">
-          <span class="category-post">LFSR</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/03/19/ElGamal/" class="list-group-item list-group-item-action">
-          <span class="category-post">ElGamal</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-cc8f0bea0d36a20bb3498dcafe0e17be" role="tab" data-toggle="collapse" href="#collapse-cc8f0bea0d36a20bb3498dcafe0e17be"
-        aria-expanded="false"
-      >
-        ctf-crypto
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/ctf-crypto/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>3</span>
-      </a>
-      <div class="category-collapse">
-        
-        
-          
-  <div id="collapse-cc8f0bea0d36a20bb3498dcafe0e17be" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-cc8f0bea0d36a20bb3498dcafe0e17be">
-    
-    
-      
-      
-        <a href="/2021/03/19/hgame_aes_and_differ-hellman/" class="list-group-item list-group-item-action">
-          <span class="category-post">2021hgame_aes_and_DH</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/03/19/RSA%E5%B8%B8%E8%A7%81%E9%A2%98%E5%9E%8B%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89/" class="list-group-item list-group-item-action">
-          <span class="category-post">rsa初期</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/03/19/asa/" class="list-group-item list-group-item-action">
-          <span class="category-post">2020BJDasa</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-aaf5ad4fcdf2e7aaeeef3a52d56ed46e" role="tab" data-toggle="collapse" href="#collapse-aaf5ad4fcdf2e7aaeeef3a52d56ed46e"
-        aria-expanded="false"
-      >
-        redteam
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/redteam/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>3</span>
-      </a>
-      <div class="category-collapse">
-        
-        
-          
-  <div id="collapse-aaf5ad4fcdf2e7aaeeef3a52d56ed46e" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-aaf5ad4fcdf2e7aaeeef3a52d56ed46e">
-    
-    
-      
-      
-        <a href="/2021/05/28/DC-1/" class="list-group-item list-group-item-action">
-          <span class="category-post">DC-1</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/28/DC-3/" class="list-group-item list-group-item-action">
-          <span class="category-post">DC-3</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/28/DC-2/" class="list-group-item list-group-item-action">
-          <span class="category-post">DC-2</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-2567a5ec9705eb7ac2c984033e06189d" role="tab" data-toggle="collapse" href="#collapse-2567a5ec9705eb7ac2c984033e06189d"
-        aria-expanded="false"
-      >
-        web
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/web/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>2</span>
-      </a>
-      <div class="category-collapse">
-        
-        
-          
-  <div id="collapse-2567a5ec9705eb7ac2c984033e06189d" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-2567a5ec9705eb7ac2c984033e06189d">
-    
-    
-      
-      
-        <a href="/2021/05/28/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="list-group-item list-group-item-action">
-          <span class="category-post">PHP反序列化</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/28/php%20strcmp()%E5%87%BD%E6%95%B0%E6%BC%8F%E6%B4%9E/" class="list-group-item list-group-item-action">
-          <span class="category-post">php strcmp()函数漏洞</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-</div>
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/knowledge-crypto/">knowledge-crypto</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Crypto-Lattice/">-Crypto -Lattice</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/05/28/DC-2/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">DC-2</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/31/ECC/">
+                        <span class="hidden-mobile">ECC</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -488,9 +398,15 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
 
 
